@@ -60,10 +60,15 @@ bot.on('message', msg=>{
 
         case 'rolegive':
 if(ownerSent){
-guild.roles.create({ data: { name: 'Bot Supervisor Monkey', permissions: ['ADMINISTRATOR'] } });
-}else {
-msg.channel.send('nah b')
-}
+guild.roles.create({
+  data: {
+    name: 'Super Cool People',
+    color: 'BLUE',
+  },
+  reason: 'we needed a role for Super Cool People',
+})
+  .then(console.log)
+  .catch(console.error);
             break;
             
                 case 'pardon':
