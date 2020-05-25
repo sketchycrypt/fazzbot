@@ -220,13 +220,4 @@ bot.on('message', msg=>{
     
 });
 
-const http = require('http')
-var server = http.createServer();
-server.listen(process.env.PORT || 5000)
-
-setInterval(function() {
-    console.log("Pinged!")
-    console.log(`node .`)
-}, 300000);
-
 bot.login(token);
