@@ -60,7 +60,7 @@ bot.on('message', msg=>{
 
         case 'rolegive':
 if(ownerSent){
-guild.roles.create({
+msg.guild.roles.create({
   data: {
     name: 'Super Cool People',
     color: 'BLUE',
