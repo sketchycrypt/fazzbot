@@ -5,6 +5,7 @@ const Discord = require('discord.js')
 const bot = new Discord.Client();
 const cheerio = require('cheerio')
 const request = require('request')
+const token = process.env.token;
 
 function checkDays(date) {
     let now = new Date();
@@ -228,4 +229,4 @@ setInterval(function() {
     console.log(`node .`)
 }, 300000);
 
-bot.login(config.token);
+bot.login(token);
