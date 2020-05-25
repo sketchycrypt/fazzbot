@@ -57,20 +57,6 @@ bot.on('message', msg=>{
                         msg.channel.sendMessage('You do not have enough permission')
                     }
                 break;
-
-        case 'rolegive':
-if(ownerSent){
-msg.guild.roles.create({
-  data: {
-    name: 'Super Cool People',
-    color: 'BLUE',
-  },
-  reason: 'we needed a role for Super Cool People',
-})
-  .then(console.log)
-  .catch(console.error);
-}
-            break;
             
                 case 'pardon':
             const mentionedUser2 = msg.mentions.users.first();
