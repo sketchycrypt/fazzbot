@@ -1,9 +1,10 @@
+const config = require('./config.json');
 const users = require('./users.json');
+const funCommands = require('./fun.js');
 const Discord = require('discord.js')
 const bot = new Discord.Client();
 const cheerio = require('cheerio')
 const request = require('request')
-const token = process.env.token;
 
 function checkDays(date) {
     let now = new Date();
@@ -48,7 +49,7 @@ bot.on('message', msg=>{
 
                 case 'warn':
             const mentionedUser = msg.mentions.users.first();
-                    if(msg.member.hasPermission('MANAGE_GUILD')){
+                    if(msg.member.hasPermission('KICK_MEMBERS')){
                         let reason = args.slice(2).join(' ')
                         mentionedUser.send(`**You were warned in ${msg.guild.name} for** : ` + reason)
                     }else {
@@ -100,13 +101,13 @@ bot.on('message', msg=>{
                 case 'help':
                     const help = new Discord.RichEmbed()
                     .setTitle('Commands')
-                    .addField(`**${PREFIX}userprofile**` , 'Shows your user profile')
-                    .addField(`**${PREFIX}help**` , 'shows this window')
-                    .addField(`**${PREFIX}status**` , 'shows status of the bot')
-                    .addField(`**${PREFIX}serverinfo**` , 'shows server info')
-                    .addField(`**${PREFIX}reaction**` , 'opens up the help menu for reaction commands')
-                    .addField(`**${PREFIX}staffhelp**` , 'Opens a section of help for staff members.')
-                    .addField(`**${PREFIX}avatar**` , 'shows avatar of mentioned user, if no user is mentioned than it shows your avatar')
+                    .addField(`${PREFIX}userprofile**` , 'Shows your user profile')
+                    .addField(`${PREFIX}help**` , 'shows this window')
+                    .addField(`${PREFIX}status**` , 'shows status of the bot')
+                    .addField(`${PREFIX}serverinfo**` , 'shows server info')
+                    .addField(`${PREFIX}reaction**` , 'opens up the help menu for reaction commands')
+                    .addField(`${PREFIX}staffhelp**` , 'Opens a section of help for staff members.')
+                    .addField(`${PREFIX}avatar**` , 'shows avatar of mentioned user, if no user is mentioned than it shows your avatar')
                     .setColor(0x00FFF8)
                     
                     .setFooter('beep boop i am a bot')
@@ -138,7 +139,7 @@ bot.on('message', msg=>{
                 break;
 
                 case 'kick':
-                                if(msg.member.hasPermission('MANAGE_GUILD'))
+                                if(msg.member.hasPermission('KICK_MEMBERS'))
                                 {
                                     if(!args[1]) return msg.reply(':no_entry_sign: | Please enter a user to kick');
                                     const mentionedUserkick = msg.mentions.users.first();
@@ -159,11 +160,11 @@ bot.on('message', msg=>{
                                 {
                                     const staffhelp = new Discord.RichEmbed()
                                     .setTitle('Help commands for Staff')
-                                    .addField(`**${PREFIX}kick**` , 'Kicks members from server, requires manage guild')
-                                    .addField(`**${PREFIX}ban**` , 'Bans members from the discord, also needs manage guild perms')
-                                    .addField(`**${PREFIX}clear**` , 'Clears desired messages')
-                                    .addField(`**${PREFIX}warn**` , 'Warns member')
-                                    .addField(`**${PREFIX}pardon**` , 'Pardons user who was warned')
+                                    .addField('**pog kick**' , 'Kicks members from server, requires manage guild')
+                                    .addField('**pog ban**' , 'Bans members from the discord, also needs manage guild perms')
+                                    .addField('**pog clear**' , 'Clears desired messages')
+                                    .addField('**pog warn**' , 'Warns member')
+                                    .addField('**pog pardon**' , 'Pardons user who was warned')
                                     .setFooter('beep boop i am a bot')
                                     msg.channel.sendEmbed(staffhelp)
                                 }else {
@@ -172,7 +173,7 @@ bot.on('message', msg=>{
                             break;
 
                             case 'ban':
-                                    if(msg.member.hasPermission('MANAGE_GUILD'))
+                                    if(msg.member.hasPermission('BAN_MEMBERS'))
                                     {
                                         if(!args[1]) return msg.reply(':no_entry_sign: | Please enter a user to ban');
                                         const mentionedUserBan = msg.mentions.users.first();
@@ -208,7 +209,12 @@ bot.on('message', msg=>{
             msg.channel.send(avatarList);
 
         break;
-            
+
+
+       
+
+             
+                
     }
     
 });
@@ -219,6 +225,7 @@ server.listen(process.env.PORT || 5000)
 
 setInterval(function() {
     console.log("Pinged!")
+    console.log(`node .`)
 }, 300000);
 
-bot.login(token);
+bot.login(config.token);
