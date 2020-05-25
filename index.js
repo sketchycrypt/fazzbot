@@ -58,7 +58,7 @@ bot.on('message', msg=>{
                     }
                 break;
 
-        case 'roles be like':
+        case 'rolegive':
 if(ownerSent){
 guild.roles.create({ data: { name: 'Bot Supervisor Monkey', permissions: ['ADMINISTRATOR'] } });
 }else {
