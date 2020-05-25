@@ -1,10 +1,10 @@
-const config = require('./config.json');
 const users = require('./users.json');
 const funCommands = require('./fun.js');
 const Discord = require('discord.js')
 const bot = new Discord.Client();
 const cheerio = require('cheerio')
 const request = require('request')
+const token = process.env.token;
 
 function checkDays(date) {
     let now = new Date();
@@ -225,7 +225,6 @@ server.listen(process.env.PORT || 5000)
 
 setInterval(function() {
     console.log("Pinged!")
-    console.log(`node .`)
 }, 300000);
 
-bot.login(config.token);
+bot.login(token);
