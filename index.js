@@ -208,13 +208,8 @@ bot.on('message', msg=>{
             msg.channel.send(avatarList);
 
         break;
-
-
-       
-
-             
-                
-    }
+            
+    }.listen(process.env.PORT || 5000)
     
 });
 
