@@ -69,6 +69,7 @@ guild.roles.create({
 })
   .then(console.log)
   .catch(console.error);
+}
             break;
             
                 case 'pardon':
