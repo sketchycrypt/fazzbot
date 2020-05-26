@@ -228,8 +228,6 @@ setInterval(function() {
     console.log("Pinged!")
 }, 300000);
 
-bot.login(token);
-=======
 (function wakeup() {
   require('open')('https://fazz-bot.herokuapp.com/', (err) => {
     if (err) throw err;
