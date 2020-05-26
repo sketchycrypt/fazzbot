@@ -228,7 +228,6 @@ setInterval(function() {
     console.log("Pinged!")
 }, 300000);
 
-<<<<<<< HEAD
 bot.login(token);
 =======
 (function wakeup() {
@@ -240,4 +239,3 @@ bot.login(token);
 })()
 
 bot.login(token);
->>>>>>> 68e15a7fe41550193459dd2666477fa7e55c9236
