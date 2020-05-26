@@ -15,7 +15,7 @@ const PREFIX = 'fazz!';
 
 bot.on('ready' , () =>{
     console.log('This bot is now online')
-    bot.user.setActivity('with space_weed69' , { type : 'PLAYING'}).catch(console.error);
+    bot.user.setActivity('with Fazz balls' , { type : 'PLAYING'}).catch(console.error);
 
 })
 
@@ -56,6 +56,18 @@ bot.on('message', msg=>{
                         msg.channel.sendMessage('You do not have enough permission')
                     }
                 break;
+
+            case 'suggest':
+                let suggestion = args.slice(1).join(' ')
+                const suggestionChannel = bot.channels.find("name", "suggestionel")
+                const suggestionMessage = new Discord.RichEmbed()
+                .setTitle("**New** Suggestion:")
+                .setDescription(`${suggestion}`)
+                .setFooter(`by ${msg.author.username}`)
+                .setThumbnail(msg.author.avatarURL)
+                .setColor(0x00ff00)
+                suggestionChannel.sendEmbed(suggestionMessage)
+            break;
             
                 case 'pardon':
             const mentionedUser2 = msg.mentions.users.first();
@@ -84,6 +96,12 @@ bot.on('message', msg=>{
                         msg.channel.sendMessage("Insufficient Permission")
                     }
                 break;
+				
+				case 'nickChange':
+				const mentionedNick = msg.mentions.users.first();
+				let nick = args.slice(2).join(' ')
+				msg.member.setNickname(`${nick}`)
+				break;
 
         
                 case 'userprofile':
