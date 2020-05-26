@@ -1,5 +1,3 @@
-const users = require('./users.json');
-const funCommands = require('./fun.js');
 const Discord = require('discord.js')
 const bot = new Discord.Client();
 const cheerio = require('cheerio')
@@ -18,6 +16,7 @@ const PREFIX = 'fazz!';
 bot.on('ready' , () =>{
     console.log('This bot is now online')
     bot.user.setActivity('with space_weed69' , { type : 'PLAYING'}).catch(console.error);
+
 })
 
 bot.on('guildMemberAdd', member =>{
@@ -161,11 +160,11 @@ bot.on('message', msg=>{
                                 {
                                     const staffhelp = new Discord.RichEmbed()
                                     .setTitle('Help commands for Staff')
-                                    .addField('**pog kick**' , 'Kicks members from server, requires manage guild')
-                                    .addField('**pog ban**' , 'Bans members from the discord, also needs manage guild perms')
-                                    .addField('**pog clear**' , 'Clears desired messages')
-                                    .addField('**pog warn**' , 'Warns member')
-                                    .addField('**pog pardon**' , 'Pardons user who was warned')
+                                    .addField(`${PREFIX} kick**' , 'Kicks members from server, requires manage guild'`)
+                                    .addField(`${PREFIX} ban**' , 'Bans members from the discord, also needs manage guild perms'`)
+                                    .addField(`${PREFIX} clear**' , 'Clears desired messages'`)
+                                    .addField(`${PREFIX} warn**' , 'Warns member'`)
+                                    .addField(`${PREFIX} pardon**' , 'Pardons user who was warned'`)
                                     .setFooter('beep boop i am a bot')
                                     msg.channel.sendEmbed(staffhelp)
                                 }else {
@@ -210,12 +209,7 @@ bot.on('message', msg=>{
             msg.channel.send(avatarList);
 
         break;
-
-
-       
-
-             
-                
+            
     }
     
 });
@@ -227,6 +221,30 @@ server.listen(process.env.PORT || 5000)
 setInterval(function() {
     console.log("Pinged!")
 }, 300000);
+
+
+function CheckOnlineStatus()
+{
+  $.ajax({
+    channelName : `fazzc`,
+    url: "https://api.twitch.tv/kraken/streams/" + channelName,
+    dataType: 'json',
+    headers: {
+      'Client-ID': `2lehd18zwt2wzt9v0skno3n4uqwe80`
+    },
+
+     success: function(channel)
+    {
+      const streamchannel = bot.channels.get("652188494025850911");
+      if (channel["stream"] == null)
+      {
+        alert(null);
+      } else {
+        streamchannel.channel.sendMessage("This faggot streaming lol, https://twitch.tv/fazzc");
+      }
+    }
+  });
+}
 
 (function wakeup() {
   require('open')('https://fazz-bot.herokuapp.com/', (err) => {
