@@ -56,6 +56,25 @@ bot.on('message', msg=>{
                         msg.channel.sendMessage('You do not have enough permission')
                     }
                 break;
+		    
+ case 'suggest':
+                let suggestion = args.slice(1).join(' ')
+                const suggestionChannel = bot.channels.find("name", "suggestionel")
+                const suggestionMessage = new Discord.RichEmbed()
+                .setTitle("**New** Suggestion:")
+                .setDescription(`${suggestion}`)
+                .setFooter(`by ${msg.author.username}`)
+                .setThumbnail(msg.author.avatarURL)
+                .setColor(0x00ff00)
+                if(!suggestion.includes("https://")){
+                    msg.channel.send(':mail: | Your **"suggestion"** has been sent to the developer!')
+                    suggestionChannel.sendEmbed(suggestionMessage)
+                }
+                if(suggestion.includes("https://")){
+                    msg.channel.send(':yousuf: nigga you aint gon rick roll me');
+                }
+
+            break;
 
             case 'suggest':
                 let suggestion = args.slice(1).join(' ')
