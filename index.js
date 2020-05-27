@@ -81,18 +81,6 @@ bot.on('message', msg=>{
 		let announcement = args.slice(1).join(' ')
 		lowiqnews.send(`${announcement}`)
 	break;
-
-            case 'suggest':
-                let suggestion = args.slice(1).join(' ')
-                const suggestionChannel = bot.channels.find("name", "suggestionel")
-                const suggestionMessage = new Discord.RichEmbed()
-                .setTitle("**New** Suggestion:")
-                .setDescription(`${suggestion}`)
-                .setFooter(`by ${msg.author.username}`)
-                .setThumbnail(msg.author.avatarURL)
-                .setColor(0x00ff00)
-                suggestionChannel.sendEmbed(suggestionMessage)
-            break;
             
                 case 'pardon':
             const mentionedUser2 = msg.mentions.users.first();
