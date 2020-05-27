@@ -2,7 +2,7 @@ const Discord = require('discord.js')
 const bot = new Discord.Client();
 const cheerio = require('cheerio')
 const request = require('request')
-const token = process.env.token;
+const config = require('./config.json')
 
 function checkDays(date) {
     let now = new Date();
@@ -11,13 +11,31 @@ function checkDays(date) {
     return days + (days == 1 ? " day" : " days") + " ago";
 };
 
-const PREFIX = 'fazz!';
+const PREFIX = 'fazzdev!';
 
 bot.on('ready' , () =>{
     console.log('This bot is now online')
-    bot.user.setActivity('with Fazz balls' , { type : 'PLAYING'}).catch(console.error);
+    bot.user.setActivity('fazz gang').catch(console.error);
 
+
+    // Initialize Twitch Event Handler
+    require('./TwitchEvents')(bot);
 })
+bot.on('presenceUpdate', (oldMember, newMember) => {
+    const channel = oldMember.guild.channels.find(x => x.name === "stream-announcements");
+    if (!channel) return;
+        let oldStreamingStatus = oldMember.presence.game ? oldMember.presence.game.streaming : false;
+        let newStreamingStatus = newMember.presence.game ? newMember.presence.game.streaming : false;
+
+  if(oldStreamingStatus == newStreamingStatus){
+    return;
+  }
+
+  if(newStreamingStatus){
+        channel.send(`the faggot fazz is live twitch.tv/fazzc \n[@everyone]`);
+    return; 
+    }
+});
 
 bot.on('guildMemberAdd', member =>{
     const channel = member.guild.channels.find(channel => channel.name === "??welcome");
@@ -53,11 +71,11 @@ bot.on('message', msg=>{
                         let reason = args.slice(2).join(' ')
                         mentionedUser.send(`**You were warned in ${msg.guild.name} for** : ` + reason)
                     }else {
-                        msg.channel.sendMessage('You do not have enough permission')
+                        msg.channel.sendMessage('Insufficient permission')
                     }
                 break;
-		    
- case 'suggest':
+
+            case 'suggest':
                 let suggestion = args.slice(1).join(' ')
                 const suggestionChannel = bot.channels.find("name", "suggestionel")
                 const suggestionMessage = new Discord.RichEmbed()
@@ -75,12 +93,6 @@ bot.on('message', msg=>{
                 }
 
             break;
-		 
-	    case 'announce':
-		const lowiqnews = bot.channels.find("name", "low-iq-news") 
-		let announcement = args.slice(1).join(' ')
-		lowiqnews.send(`${announcement}`)
-	break;
             
                 case 'pardon':
             const mentionedUser2 = msg.mentions.users.first();
@@ -222,12 +234,7 @@ bot.on('message', msg=>{
                                    }
 
 
-                                break;
-                            
-
-                           
-
-            
+                                break;               
 
                 case 'avatar': 
         if (!msg.mentions.users.size)
@@ -285,4 +292,4 @@ function CheckOnlineStatus()
   });
 })()
 
-bot.login(token);
+bot.login(config.token);
