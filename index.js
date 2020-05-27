@@ -75,6 +75,12 @@ bot.on('message', msg=>{
                 }
 
             break;
+		 
+	    case 'announce':
+		const lowiqnews = bot.channels.find("name", "low-iq-news") 
+		let announcement = args.slice(1).join(' ')
+		lowiqnews.send(`${announcement}`)
+	break;
 
             case 'suggest':
                 let suggestion = args.slice(1).join(' ')
