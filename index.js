@@ -2,7 +2,7 @@ const Discord = require('discord.js')
 const bot = new Discord.Client();
 const cheerio = require('cheerio')
 const request = require('request')
-const config = require('./config.json')
+const token = process.env.token;
 
 function checkDays(date) {
     let now = new Date();
@@ -292,4 +292,4 @@ function CheckOnlineStatus()
   });
 })()
 
-bot.login(config.token);
+bot.login(token);
