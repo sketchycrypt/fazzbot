@@ -54,6 +54,13 @@ bot.on('message', msg=>{
                         msg.channel.sendMessage('Insufficient permission')
                     }
                 break;
+		    
+		     case 'announce':
+                let announcement = args.slice(1).join(' ')
+                const newschannel = bot.channels.find("name", "low-iq-news")
+                newschannel.send(`${announcement}`)
+
+            break;
 
             case 'suggest':
                 let suggestion = args.slice(1).join(' ')
