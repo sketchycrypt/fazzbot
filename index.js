@@ -11,25 +11,14 @@ function checkDays(date) {
     return days + (days == 1 ? " day" : " days") + " ago";
 };
 
-const PREFIX = 'fazzdev!';
+const PREFIX = 'fazz!';
 
 bot.on('ready' , () =>{
     console.log('This bot is now online')
     bot.user.setActivity('fazz gang').catch(console.error);
 
-
-    // Initialize Twitch Event Handler
-    require('./TwitchEvents')(bot);
 })
-bot.on('presenceUpdate', (oldMember, newMember) => {
-    const channel = oldMember.guild.channels.find(x => x.name === "stream-announcements");
-    if (!channel) return;
-        let oldStreamingStatus = oldMember.presence.game ? oldMember.presence.game.streaming : false;
-        let newStreamingStatus = newMember.presence.game ? newMember.presence.game.streaming : false;
 
-  if(oldStreamingStatus == newStreamingStatus){
-    return;
-  }
 
   if(newStreamingStatus){
         channel.send(`the faggot fazz is live twitch.tv/fazzc \n[@everyone]`);
