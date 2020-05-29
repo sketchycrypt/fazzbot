@@ -15,7 +15,7 @@ const PREFIX = 'fazz!';
 
 bot.on('ready' , () =>{
     console.log('This bot is now online')
-    bot.user.setActivity('fazz gang').catch(console.error);
+    bot.user.setActivity('games on the toilet').catch(console.error);
 })
 bot.on('guildMemberAdd', member =>{
     const channel = member.guild.channels.find(channel => channel.name === "??welcome");
