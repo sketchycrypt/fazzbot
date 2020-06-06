@@ -58,7 +58,12 @@ bot.on('message', msg=>{
 		     case 'announce':
                 let announcement = args.slice(1).join(' ')
                 const newschannel = bot.channels.find("name", "low-iq-news")
-                newschannel.send(`${announcement}`)
+		if(ownerSent){
+		newschannel.send(`${announcement}`)
+		}else{
+	msg.channel.send('nah no way in hell nigga')
+		}
+		  
 
             break;
 
