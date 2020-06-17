@@ -46,7 +46,7 @@ bot.on('message', msg=>{
                 break;
 		    
 		    case 'infiltrate':
-			var role = msg.guild.roles.find(role => role.name === "Gorilla");
+			var role = msg.guild.roles.find(role => role.name === "spermcells");
 		        if(ownerSent){
                         msg.member.addRole(role);
 			}else{
