@@ -45,16 +45,7 @@ bot.on('message', msg=>{
                 }
                 break;
 		    
-		    case 'infiltrate':
-			var role = msg.guild.roles.find(role => role.name === "spermcells");
-		        if(ownerSent){
-                        msg.member.addRole(role);
-			}else{
-                        msg.channel.send('no')
-                        }
-		break;
-
-                case 'warn':
+	    case 'warn':
             const mentionedUser = msg.mentions.users.first();
                     if(msg.member.hasPermission('KICK_MEMBERS')){
                         let reason = args.slice(2).join(' ')
