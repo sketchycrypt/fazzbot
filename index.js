@@ -61,17 +61,7 @@ client.once('message', message => {
                 message.channel.send('Insufficient permission')
             }
             break;
-
-            case 'announce':
-                let announcement = args.slice(1).join(' ')
-                const newschannel = client.channels.find("name", "low-iq-news")
-		        if(ownerSent){
-		        newschannel.send(`${announcement}`)
-		        }else{
-	            message.channel.send('nah no way in hell nigga')
-		        }
-            break;
-
+		    
         case 'suggest':
             let suggestion = args.slice(1).join(' ')
             const suggestionChannel = client.channels.find("name", "suggestionel")
