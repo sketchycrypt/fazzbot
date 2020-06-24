@@ -65,7 +65,6 @@ client.once('message', message => {
             case 'announce':
                 let announcement = args.slice(1).join(' ')
                 const newschannel = client.channels.find("name", "low-iq-news")
-                newschannel.send(`${announcement}`)
 		        if(ownerSent){
 		        newschannel.send(`${announcement}`)
 		        }else{
