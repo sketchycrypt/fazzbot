@@ -9,7 +9,7 @@ function checkDays(date) {
     return days + (days == 1 ? " day" : " days") + " ago";
 };
 
-const PREFIX = 'fazzdev!';
+const PREFIX = 'fazz!';
 
 client.once('ready', () => {
     console.log('This bot is now online')
