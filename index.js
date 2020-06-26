@@ -251,7 +251,7 @@ function cursed(message){
  
         if (!urls.length) {
            
-            return;
+            if (error) console.log(error)
         }
  
         const CursedMessage = new Discord.RichEmbed()
