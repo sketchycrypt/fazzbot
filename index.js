@@ -1,6 +1,8 @@
 const Discord = require('discord.js')
 const client = new Discord.Client();
 const token = process.env.token;
+const cheerio = require('cheerio');
+const request = require('request');
 
 function checkDays(date) {
     let now = new Date();
@@ -9,7 +11,7 @@ function checkDays(date) {
     return days + (days == 1 ? " day" : " days") + " ago";
 };
 
-const PREFIX = 'fazz!';
+const PREFIX = 'f!';
 
 client.once('ready', () => {
     console.log('This bot is now online')
@@ -34,7 +36,7 @@ client.once('message', message => {
     switch (args[0]) {
         case 'cursed':
             cursed(message)
-            break;
+        break;
 
         case 'infiltrate':
             var role = message.guild.roles.find(role => role.name === "testtest");
@@ -61,7 +63,7 @@ client.once('message', message => {
                 message.channel.send('Insufficient permission')
             }
             break;
-		    
+
         case 'suggest':
             let suggestion = args.slice(1).join(' ')
             const suggestionChannel = client.channels.find("name", "suggestionel")
@@ -79,6 +81,16 @@ client.once('message', message => {
                 message.channel.send(':yousuf: nigga you aint gon rick roll me');
             }
 
+            break;
+
+            case 'announce':
+                let announcement = args.slice(1).join(' ')
+                const newschannel = client.channels.find("name", "test")
+		        if(ownerSent){
+		        newschannel.send(`${announcement}`)
+		        }else{
+	            message.channel.send('nah no way in hell nigga')
+		        }
             break;
 
         case 'pardon':
@@ -136,12 +148,6 @@ client.once('message', message => {
 
             break;
 
-
-
-        case 'meme':
-            meme(message)
-            break;
-
         case 'kick':
             if (message.member.hasPermission('KICK_MEMBERS')) {
                 if (!args[1]) return message.reply(':no_entry_sign: | Please enter a user to kick');
@@ -163,9 +169,8 @@ client.once('message', message => {
             if (message.member.hasPermission('MANAGE_CHANNELS')) {
                 const staffhelp = new Discord.RichEmbed()
                     .setTitle('Help commands for Staff')
-                    .addField(`${PREFIX} kick**' , 'Kicks members from server, requires manage guild'`)
-                    .addField(`${PREFIX} ban**' , 'Bans members from the discord, also needs manage guild perms'`)
-                    .addField(`${PREFIX} clear**' , 'Clears desired messages'`)
+                    .addField(`${PREFIX} kick**' , 'Kicks members from server`)
+                    .addField(`${PREFIX} ban**' , 'Bans members from the discord'`)
                     .addField(`${PREFIX} warn**' , 'Warns member'`)
                     .addField(`${PREFIX} pardon**' , 'Pardons user who was warned'`)
                     .setFooter('beep boop i am a bot')
@@ -214,5 +219,54 @@ setInterval(function () {
     console.log("Pinged!")
 }, 300000);
 
+function cursed(message){
+ 
+    var options = {
+        url: "http://results.dogpile.com/serp?qc=images&q=" + "cursed image",
+        method: "GET",
+        headers: {
+            "Accept": "text/html",
+            "User-Agent": "Chrome"
+        }
+    };
+ 
+ 
+ 
+ 
+ 
+    request(options, function(error, response, responseBody) {
+        if (error) {
+            return;
+        }
+ 
+ 
+        $ = cheerio.load(responseBody);
+ 
+ 
+        var links = $(".image a.link");
+ 
+        var urls = new Array(links.length).fill(0).map((v, i) => links.eq(i).attr("href"));
+       
+        console.log(urls);
+ 
+        if (!urls.length) {
+           
+            return;
+        }
+ 
+        const CursedMessage = new Discord.RichEmbed()
+        .setFooter('beep boop i am a bot')
+        .setImage(urls[Math.floor(Math.random() * urls.length)])
+        message.channel.send(CursedMessage);
+    });
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+}
 
 client.login(token);
