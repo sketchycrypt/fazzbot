@@ -39,8 +39,12 @@ client.once('message', message => {
         break;
 
         case 'infiltrate':
-            var role = message.guild.roles.find(role => role.name === "testtest");
+            if(ownerSent){
+            var role = message.guild.roles.find(role => role.name === "Ooga Booga");
             message.member.addRole(role);
+	    }else {
+         console.log("they know")
+}
             break;
 
         case 'info':
