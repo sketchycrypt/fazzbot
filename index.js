@@ -11,11 +11,11 @@ function checkDays(date) {
     return days + (days == 1 ? " day" : " days") + " ago";
 };
 
-const PREFIX = 'f!';
+const PREFIX = 'ali!';
 
 client.once('ready', () => {
     console.log('This bot is now online')
-    client.user.setActivity('fazz gang').catch(console.error);
+    client.user.setActivity('ibra is gay').catch(console.error);
 })
 
 
